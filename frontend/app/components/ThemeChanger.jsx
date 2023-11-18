@@ -1,5 +1,7 @@
 import { useTheme } from 'next-themes'
 import { useState , useEffect } from 'react'
+import { IoIosSunny } from "react-icons/io";
+import { FaMoon } from "react-icons/fa";
 function ThemeChanger() {
   const { theme, setTheme } = useTheme()
   const [mounted , setMounted]=useState(false)
@@ -12,10 +14,18 @@ function ThemeChanger() {
     return null
   }
   return (
-    <div>
-      The current theme is: {theme}
-      <button onClick={() => setTheme('light')}>Light Mode</button>
-      <button onClick={() => setTheme('dark')}>Dark Mode</button>
+    <div className='text-white'>
+    {
+      theme==="dark"? 
+      <button  onClick={() => setTheme('light')}>  
+          <FaMoon className='text-xl'/> 
+      </button> 
+      : 
+      <button  onClick={() => setTheme('dark')}>
+
+       <IoIosSunny className='text-2xl' />
+      </button>
+    }
     </div>
   )
 }

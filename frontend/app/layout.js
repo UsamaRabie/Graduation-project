@@ -13,7 +13,7 @@ export default function RootLayout({children}) {
         <title>Platform</title>
         <meta name='description' content='Description' />
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.className} dark:bg-slate-700`}>
         <ThemeProvider attribute='class'>
          <ReduxProvider>
                   {children}
