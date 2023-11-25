@@ -3,7 +3,6 @@ import Slider from "./components/Slider";
 function app() {
   return (
     <div>
-      <Navbar />
       <div className="text-center md:mt-14 ">
         <h1 className="mt-5 text-2xl font-bold pb-3 border-b-4 inline-block border-solid border-slate-500">
           Courses

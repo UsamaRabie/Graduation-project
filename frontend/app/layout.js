@@ -3,6 +3,7 @@ import { ReduxProvider } from './reduxToolkit/provider/provider'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from 'next-themes'
+import Navbar from "./components/Navbar"
 const inter = Inter({ subsets: ['latin'] })
 
 
@@ -16,6 +17,7 @@ export default function RootLayout({children}) {
       <body className={`${inter.className} bg-gray-200 dark:bg-gray-950`}>
         <ThemeProvider attribute='class'>
          <ReduxProvider>
+          <Navbar/>
                   {children}
         </ReduxProvider>
         </ThemeProvider>
