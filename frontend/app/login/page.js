@@ -1,7 +1,43 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import ThemeChanger from "../components/ThemeChanger";
+import { useRouter } from "next/navigation";
 const page = () => {
+
+
+  const router = useRouter();
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isUser, setIsUser] = useState(false);
+
+  const handleCheckboxChange = (e) => {
+    const { name, checked } = e.target;
+
+    // Uncheck the other checkbox when one is checked
+    if (name === 'admin' && checked) {
+      setIsUser(false);
+    } else if (name === 'user' && checked) {
+      setIsAdmin(false);
+    }
+
+    // Update the state of the clicked checkbox
+    if (name === 'admin') {
+      setIsAdmin(checked);
+    } else if (name === 'user') {
+      setIsUser(checked);
+    }
+  };
+
+  const handleRoute = () => {
+    if (isAdmin) {
+      router.push('/admin');
+    } else if (isUser) {
+      router.push('/user');
+    } else {
+      // Handle default case or show an error
+    }
+  };
+
+
   return (
     <section className="bg-neutral-200 dark:bg-slate-900 flex justify-center  h-screen">
       <div className="container h-full p-24">
@@ -46,19 +82,38 @@ const page = () => {
                         </label>
                       </div>
 
+                      {/* <!--Checkboxes--> */}
+
+                      <div className="flex flex-col gap-2 mb-3">
+
+
+                        <div className="flex items-center">
+                        <input className="mr-2 "  type="checkbox" name="admin" checked={isAdmin} onChange={handleCheckboxChange} />
+                        <p className="text-indigo-500 font-bold dark:text-slate-100">Admin</p>
+                        </div>
+
+                        <div className="flex items-center">
+                        <input className="mr-2"   type="checkbox" name="user" checked={isUser} onChange={handleCheckboxChange} />
+                        <p className="text-indigo-500 font-bold dark:text-slate-100">User</p>
+                        </div>
+
+                      </div>
+
                       {/* <!--Submit button--> */}
                       <div className="mb-12 pb-1 pt-1 text-center">
-                  
-                          <button
-                            className="bg-indigo-500 dark:!bg-slate-500 mb-3 inline-block w-full rounded-lg px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition-all duration-300 hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
-                            type="button"
-                          >
-                            Log in
-                          </button>
-                        
+                        <button
+                          className="bg-indigo-500 dark:!bg-slate-500 mb-3 inline-block w-full rounded-lg px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition-all duration-300 hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
+                          type="button"
+                          onClick={handleRoute}
+                        >
+                          Log in
+                        </button>
 
                         {/* <!--Forgot password link--> */}
-                        <a href="#!" className="    hover:text-indigo-500 text-gray-500 ">
+                        <a
+                          href="#!"
+                          className="    hover:text-indigo-500 text-gray-500 "
+                        >
                           Forgot password?
                         </a>
                       </div>
@@ -67,10 +122,7 @@ const page = () => {
                 </div>
 
                 {/* <!-- Right column container with background and description--> */}
-                <div
-                  className="flex items-center rounded-b-lg lg:w-6/12 lg:rounded-r-lg lg:rounded-bl-none bg-indigo-500 dark:bg-slate-500"
-        
-                >
+                <div className="flex items-center rounded-b-lg lg:w-6/12 lg:rounded-r-lg lg:rounded-bl-none bg-indigo-500 dark:bg-slate-500">
                   <div className="px-4 py-6 text-white md:mx-6 md:p-12">
                     <h4 className="mb-6 text-xl font-semibold">
                       We are more than just a company
