@@ -13,6 +13,7 @@ export default function RootLayout({children}) {
       <head>
         <title>Platform</title>
         <meta name='description' content='Description' />
+        <link rel="icon" href="images/icon.jpg"></link>
       </head>
       <body className={`${inter.className} bg-gray-200 dark:bg-gray-950`}>
         <ThemeProvider attribute='class'>
