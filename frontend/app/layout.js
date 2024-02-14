@@ -4,10 +4,14 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from 'next-themes'
 import Navbar from "./components/Navbar"
+import { usePathname } from 'next/navigation'
 const inter = Inter({ subsets: ['latin'] })
 
 
+
+
 export default function RootLayout({children}) {
+  const pathname=usePathname()
   return (
     <html lang="en">
       <head>
@@ -19,7 +23,9 @@ export default function RootLayout({children}) {
         <ThemeProvider attribute='class'>
          <ReduxProvider>
           <Navbar/>
-                  {children}
+          <div className={pathname !== '/profile' ? 'mx-auto max-w-7xl px-2 sm:px-6 lg:px-8' : ''}>
+ {children}</div>
+                
         </ReduxProvider>
         </ThemeProvider>
         </body>
