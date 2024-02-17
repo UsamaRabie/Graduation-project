@@ -17,9 +17,9 @@ const videos = [
   },
   // Add more videos as needed
 ];
-const VideoSidebar = ({ onSelectVideo, isOpen, toggleSidebar }) => {
+const VideoSidebar = ({ onSelectVideo, isOpen }) => {
   return (
-    <div className={`md:w-1/4 dark:bg-gray-700 h-screen overflow-y-auto transition-all duration-700 ease-in-out ${isOpen ? 'block' : 'hidden'} `}>
+    <div className={`md:w-1/4  bg-white  dark:bg-gray-700 h-screen overflow-y-auto transition-all duration-700 ease-in-out ${isOpen ? 'block' : 'hidden'} `}>
     <div className="p-4">
       <h2 className="text-lg font-bold mb-4">Lectures</h2>
       <ul>
@@ -60,7 +60,7 @@ const IndexPage = ({params}) => {
 
   return (
     <>
-          <h2 className='text-center text-3xl my-3 font-semibold'>{params.course.replace(/20%/g, " ")}</h2>
+          <h2 className='text-center text-3xl my-3 font-semibold'>{params.course.replace(/%20/g, " ")}</h2>
 
     <div className="md:flex">
       <VideoPlayer videoSrc={currentVideo.src} />
