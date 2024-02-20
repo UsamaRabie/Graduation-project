@@ -32,7 +32,14 @@ const videos = [
     slideUrl:
       "https://drive.google.com/file/d/1uCNavikjGzmA9kZUUTJcQ_dTkbcVFkia/view?usp=drive_link",
   },
-  // Add more videos as needed
+  {
+    id: 5,
+    title: "Lecture 5",
+    src: "https://www.youtube.com/embed/z-4ZnPffbvc",
+    slideUrl:
+      "https://drive.google.com/file/d/1uCNavikjGzmA9kZUUTJcQ_dTkbcVFkia/view?usp=drive_link",
+  },
+  
 ];
 
 const VideoSidebar = ({ onSelectVideo, isOpen }) => {
@@ -63,7 +70,7 @@ const VideoSidebar = ({ onSelectVideo, isOpen }) => {
   }, []);
   return (
     <div
-      className={`rounded-xl md:w-1/4 bg-white dark:bg-gray-700 h-[100vh] overflow-y-auto  ${
+      className={`rounded-xl md:w-1/4 bg-white dark:bg-gray-700 h-[100vh] overflow-y-auto ${
         scroll ? "sticky right-5 top-0" : ""
       }`}
     >
@@ -73,7 +80,7 @@ const VideoSidebar = ({ onSelectVideo, isOpen }) => {
           {videos.map((video) => (
             <Button
               key={video.id}
-              className={`bg-gray-300 text-black cursor-pointer p-2 rounded-md last:border-none transition-all duration-200 mb-5 ${
+              className={`bg-gray-200 text-black cursor-pointer p-2 rounded-xl last:border-none transition-all duration-200 mb-6 ${
                 currentVid.id === video.id ? "bg-indigo-500 text-white" : ""
               }`}
               onClick={() => {
@@ -92,7 +99,7 @@ const VideoSidebar = ({ onSelectVideo, isOpen }) => {
 
 const VideoPlayer = ({ videoSrc }) => {
   return (
-    <div className="md:flex-1 bg-gray-300 rounded-3xl p-5 min-h-[300px] h-[500px] shadow-md flex justify-center items-center">
+    <div className="md:flex-1 bg-gray-200 rounded-3xl p-5 min-h-[300px] h-[500px] shadow-lg flex justify-center items-center">
       <iframe
         className="w-3/4 mx-auto md:h-full min-h-[300px] rounded-2xl "
         src={videoSrc}
@@ -119,7 +126,7 @@ const IndexPage = ({ params }) => {
     <div className="md:flex pt-5 mx-5">
       <div className="w-full md:w-3/4 md:mr-5">
         <VideoPlayer videoSrc={currentVideo.src} />
-        <DownloadButton />
+        <DownloadButton fileUrl={currentVideo.slideUrl} />
         <p>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit magnam
           consequuntur deserunt non. Laborum fugiat dolorem ex suscipit iure
