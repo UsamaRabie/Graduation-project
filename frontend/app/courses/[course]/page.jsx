@@ -1,5 +1,6 @@
 "use client";
 import DownloadButton from "@/app/components/DownloadButton";
+import { Button } from "@material-tailwind/react";
 import React, { useEffect, useState } from "react";
 
 const videos = [
@@ -13,6 +14,20 @@ const videos = [
   {
     id: 2,
     title: "Lecture 2",
+    src: "https://www.youtube.com/embed/z-4ZnPffbvc",
+    slideUrl:
+      "https://drive.google.com/file/d/1uCNavikjGzmA9kZUUTJcQ_dTkbcVFkia/view?usp=drive_link",
+  },
+  {
+    id: 3,
+    title: "Lecture 3",
+    src: "https://www.youtube.com/embed/z-4ZnPffbvc",
+    slideUrl:
+      "https://drive.google.com/file/d/1uCNavikjGzmA9kZUUTJcQ_dTkbcVFkia/view?usp=drive_link",
+  },
+  {
+    id: 4,
+    title: "Lecture 4",
     src: "https://www.youtube.com/embed/z-4ZnPffbvc",
     slideUrl:
       "https://drive.google.com/file/d/1uCNavikjGzmA9kZUUTJcQ_dTkbcVFkia/view?usp=drive_link",
@@ -54,12 +69,12 @@ const VideoSidebar = ({ onSelectVideo, isOpen }) => {
     >
       <div className="p-4">
         <h2 className="text-lg font-bold mb-4 border-b-2 pb-2">Lectures</h2>
-        <ul>
+        <div className="flex flex-col">
           {videos.map((video) => (
-            <li
+            <Button
               key={video.id}
-              className={`cursor-pointer p-2 rounded-md last:border-none transition-all duration-200 mb-2 ${
-                currentVid.id === video.id ? "bg-gray-300" : ""
+              className={`bg-gray-300 text-black cursor-pointer p-2 rounded-md last:border-none transition-all duration-200 mb-5 ${
+                currentVid.id === video.id ? "bg-indigo-500 text-white" : ""
               }`}
               onClick={() => {
                 onSelectVideo(video);
@@ -67,9 +82,9 @@ const VideoSidebar = ({ onSelectVideo, isOpen }) => {
               }}
             >
               {video.title}
-            </li>
+            </Button>
           ))}
-        </ul>
+        </div>
       </div>
     </div>
   );
@@ -77,9 +92,9 @@ const VideoSidebar = ({ onSelectVideo, isOpen }) => {
 
 const VideoPlayer = ({ videoSrc }) => {
   return (
-    <div className="md:flex-1 bg-gray-300 rounded-3xl p-5 min-h-[300px] h-[500px] shadow-md">
+    <div className="md:flex-1 bg-gray-300 rounded-3xl p-5 min-h-[300px] h-[500px] shadow-md flex justify-center items-center">
       <iframe
-        className="w-3/4 mx-auto md:h-full min-h-[300px] rounded-2xl"
+        className="w-3/4 mx-auto md:h-full min-h-[300px] rounded-2xl "
         src={videoSrc}
         frameBorder="0"
         allowFullScreen="allowFullScreen"
@@ -101,7 +116,7 @@ const IndexPage = ({ params }) => {
   };
 
   return (
-    <div className="md:flex pt-5 mx-5 ">
+    <div className="md:flex pt-5 mx-5">
       <div className="w-full md:w-3/4 md:mr-5">
         <VideoPlayer videoSrc={currentVideo.src} />
         <DownloadButton />

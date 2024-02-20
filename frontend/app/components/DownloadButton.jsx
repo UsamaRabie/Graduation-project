@@ -1,3 +1,4 @@
+import { Button } from '@material-tailwind/react';
 import React from 'react';
 
 const DownloadButton = ({ fileUrl }) => {
@@ -18,9 +19,9 @@ const DownloadButton = ({ fileUrl }) => {
 
   return (
     <div className='text-center'>
-      <button onClick={handleDownload} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded my-10">
+      <Button onClick={handleDownload} className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded my-10 transition-all duration-200">
         Download Slide
-      </button>
+      </Button>
     </div>
   );
 };

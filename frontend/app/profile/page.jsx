@@ -5,23 +5,23 @@ function Profile() {
     <div>
       <div className="g">
         {/* top content */}
-        <div className="flex bg-coffee-color sm:px-2 w-full">
-          <div className="h-40 w-40 overflow-hidden sm:rounded-full sm:relative sm:p-0 top-10 left-5 p-3">
+        <div className="flex bg-gray-300 sm:px-2 w-full rounded-s-2xl text-indigo-500">
+          <div className="h-40 w-40 overflow-hidden sm:rounded-full sm:relative sm:p-0 top-10 left-5 p-3 ">
             <img
-              className="rounded-full"
+              className="rounded-full "
               src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
               alt=""
             />{" "}
           </div>
-          <div className="w-2/3 sm:text-center pl-5 mt-10 text-start">
-            <p className="font-poppins font-bold text-white sm:text-4xl text-2xl">
+          <div className="w-2/3 sm:text-center pl-5 mt-10 text-start ">
+            <p className="font-poppins font-bold text-black sm:text-4xl text-2xl">
               Mohamed Alaa
             </p>
-            <p className="text-white">Software Engineer</p>
+            <p className="text-black">Software Engineer</p>
           </div>
         </div>
         {/* main content */}
-        <div className="p-5">
+        <div className="p-5 ">
           <div className="flex flex-col sm:flex-row sm:mt-10">
             <div className="flex flex-col sm:w-1/3">
               {/* My contact */}
