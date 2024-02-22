@@ -1,7 +1,12 @@
 "use client";
 import DownloadButton from "@/app/components/DownloadButton";
-import { Button } from "@material-tailwind/react";
+import { Button, Spinner } from "@material-tailwind/react";
 import React, { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import "animate.css";
+import Spin from "@/app/components/Spin";
+
 
 const videos = [
   {
@@ -39,14 +44,20 @@ const videos = [
     slideUrl:
       "https://drive.google.com/file/d/1uCNavikjGzmA9kZUUTJcQ_dTkbcVFkia/view?usp=drive_link",
   },
-  
 ];
 
-const VideoSidebar = ({ onSelectVideo, isOpen }) => {
+const VideoSidebar = ({ onSelectVideo,isOpen,toggleSidebar }) => {
   const [currentVid, setCurrentVid] = useState(videos[0]);
   const [scroll, setIsScroll] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
-  const selectVidIndex = (video) => {
+  const handleDisappear = () => {
+    isOpen===true?setIsVisible(true):setIsVisible(false)
+  
+
+  };
+
+  const selectVidIndex = (video, toggleSidebar) => {
     setCurrentVid(video);
   };
   useEffect(() => {
@@ -68,20 +79,42 @@ const VideoSidebar = ({ onSelectVideo, isOpen }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   return (
     <div
-      className={`rounded-xl md:w-1/4 bg-white dark:bg-gray-700 h-[100vh] overflow-y-auto ${
-        scroll ? "sticky right-5 top-0" : ""
-      }`}
+      className={`rounded-xl md:w-1/4 bg-white dark:bg-gray-700 h-[100vh] overflow-y-auto
+      ${scroll ? "sticky top-0 right-0" : ""}
+    ${
+      isVisible
+        ? "animate__animated animate__bounceInRight"
+        : "animate__animated animate__fadeOutRight"
+    }
+    `}
     >
       <div className="p-4">
-        <h2 className="text-lg font-bold mb-4 border-b-2 pb-2">Lectures</h2>
+        <div className="flex mb-4 border-b-2 pb-2 items-center">
+          <h2 className="text-lg font-bold ">Lectures</h2>
+
+          <Button
+            id="x"
+            onClick={()=>{
+              handleDisappear()
+              toggleSidebar()
+             
+
+
+            }}
+            className=" text-md ml-auto rounded-full flex justify-center items-center bg-indigo-500 w-3 h-3 p-3.5 hover:bg-indigo-600 transition-all duration-300 hover:rotate-180"
+          >
+            <FontAwesomeIcon icon={faXmark} />
+          </Button>
+        </div>
         <div className="flex flex-col">
           {videos.map((video) => (
             <Button
               key={video.id}
               className={`bg-gray-200 text-black cursor-pointer p-2 rounded-xl last:border-none transition-all duration-200 mb-6 ${
-                currentVid.id === video.id ? "bg-indigo-500 text-white" : ""
+                currentVid.id === video.id ? "bg-indigo-500 text-white " : ""
               }`}
               onClick={() => {
                 onSelectVideo(video);
@@ -98,35 +131,59 @@ const VideoSidebar = ({ onSelectVideo, isOpen }) => {
 };
 
 const VideoPlayer = ({ videoSrc }) => {
+  const [iframeLoaded, setIframeLoaded] = useState(false);
+
+  useEffect(() => {
+    const handleIframeLoad = () => {
+      setIframeLoaded(true);
+    };
+    const iframe = document.querySelector("iframe");
+    if (iframe && iframe.contentWindow) {
+      setIframeLoaded(true);
+    }
+    window.addEventListener("message", handleIframeLoad);
+
+    return () => {
+      window.removeEventListener("message", handleIframeLoad);
+    };
+  }, []);
+
   return (
-    <div className="md:flex-1 bg-gray-200 rounded-3xl p-5 min-h-[300px] h-[500px] shadow-lg flex justify-center items-center">
+    <div className="animate__animated animate__backInDown  md:flex-1 bg-gray-300 rounded-3xl p-5 min-h-[300px] h-[500px] shadow-lg flex justify-center items-center">
+      {!iframeLoaded && <Spin />}
+
       <iframe
-        className="w-3/4 mx-auto md:h-full min-h-[300px] rounded-2xl "
+        className={`w-3/4 mx-auto md:h-full min-h-[300px] rounded-2xl animate__animated animate__fadeIn ${
+          iframeLoaded ? "" : "hidden"
+        }`}
         src={videoSrc}
-        frameBorder="0"
         allowFullScreen="allowFullScreen"
       ></iframe>
     </div>
   );
 };
 
-const IndexPage = ({ params }) => {
-  const [isOpen, setIsOpen] = useState(true);
+const IndexPage = () => {
   const [currentVideo, setCurrentVideo] = useState(videos[0]);
-
-  const toggleSidebar = () => {
-    setIsOpen(!isOpen);
-  };
-
   const selectVideo = (video) => {
     setCurrentVideo(video);
   };
 
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
-    <div className="md:flex pt-5 mx-5">
-      <div className="w-full md:w-3/4 md:mr-5">
+    <div className="md:flex pt-5 mx-5 overflow-x-hidden ">
+      <div
+        className={`transition-all duration-200 ${
+          isSidebarOpen ? `w-full md:w-3/4 md:mr-5` : `w-full`
+        } `}
+      >
         <VideoPlayer videoSrc={currentVideo.src} />
         <DownloadButton fileUrl={currentVideo.slideUrl} />
+        
         <p>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit magnam
           consequuntur deserunt non. Laborum fugiat dolorem ex suscipit iure
@@ -143,9 +200,15 @@ const IndexPage = ({ params }) => {
           Explicabo nam aliquid numquam, deleniti quas saepe cupiditate omnis,
           laboriosam inventore vitae nesciunt cum tenetur natus in earum
         </p>
+        <button onClick={toggleSidebar}>X</button>
       </div>
-
-      <VideoSidebar onSelectVideo={selectVideo} isOpen={isOpen} />
+      {isSidebarOpen && (
+        <VideoSidebar
+          onSelectVideo={selectVideo}
+          isOpen={isSidebarOpen}
+          toggleSidebar={toggleSidebar}
+        />
+      )}
     </div>
   );
 };
