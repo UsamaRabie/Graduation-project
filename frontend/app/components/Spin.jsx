@@ -5,7 +5,7 @@ const Spin = () => {
     <div role="status">
       <svg
         aria-hidden="true"
-        className="inline w-16 h-16 text-gray-400 animate-spin dark:text-gray-600 fill-indigo-500"
+        className="inline w-16 h-16 text-gray-400 animate-spin dark:text-gray-500 fill-[#66bfbf]"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
