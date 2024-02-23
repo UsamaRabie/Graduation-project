@@ -3,10 +3,9 @@ import DownloadButton from "@/app/components/DownloadButton";
 import { Button, Spinner } from "@material-tailwind/react";
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faXmark, faLeftLong } from "@fortawesome/free-solid-svg-icons";
 import "animate.css";
 import Spin from "@/app/components/Spin";
-
 
 const videos = [
   {
@@ -46,15 +45,13 @@ const videos = [
   },
 ];
 
-const VideoSidebar = ({ onSelectVideo,isOpen,toggleSidebar }) => {
+const VideoSidebar = ({ onSelectVideo, isOpen, toggleSidebar }) => {
   const [currentVid, setCurrentVid] = useState(videos[0]);
   const [scroll, setIsScroll] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
 
   const handleDisappear = () => {
-    isOpen===true?setIsVisible(true):setIsVisible(false)
-  
-
+    isOpen === true ? setIsVisible(true) : setIsVisible(false);
   };
 
   const selectVidIndex = (video, toggleSidebar) => {
@@ -82,7 +79,7 @@ const VideoSidebar = ({ onSelectVideo,isOpen,toggleSidebar }) => {
 
   return (
     <div
-      className={`rounded-xl md:w-1/4 bg-white dark:bg-gray-700 h-[100vh] overflow-y-auto
+      className={`rounded-xl md:w-1/4 bg-white dark:bg-gray-800 h-[100vh] overflow-y-auto
       ${scroll ? "sticky top-0 right-0" : ""}
     ${
       isVisible
@@ -97,14 +94,11 @@ const VideoSidebar = ({ onSelectVideo,isOpen,toggleSidebar }) => {
 
           <Button
             id="x"
-            onClick={()=>{
-              handleDisappear()
-              toggleSidebar()
-             
-
-
+            onClick={() => {
+              handleDisappear();
+              toggleSidebar();
             }}
-            className=" text-md ml-auto rounded-full flex justify-center items-center bg-indigo-500 w-3 h-3 p-3.5 hover:bg-indigo-600 transition-all duration-300 hover:rotate-180"
+            className="text-md ml-auto hidden  rounded-full md:flex justify-center items-center bg-indigo-500 dark:bg-red-600 w-3 h-3 p-3.5 dark:hover:bg-red-700 transition-all duration-300 hover:rotate-180"
           >
             <FontAwesomeIcon icon={faXmark} />
           </Button>
@@ -113,8 +107,10 @@ const VideoSidebar = ({ onSelectVideo,isOpen,toggleSidebar }) => {
           {videos.map((video) => (
             <Button
               key={video.id}
-              className={`bg-gray-200 text-black cursor-pointer p-2 rounded-xl last:border-none transition-all duration-200 mb-6 ${
-                currentVid.id === video.id ? "bg-indigo-500 text-white " : ""
+              className={`bg-gray-200 text-black cursor-pointer p-2 dark:text-white rounded-xl last:border-none transition-all duration-200 mb-6 ${
+                currentVid.id === video.id
+                  ? "bg-indigo-500 text-white dark:bg-slate-900 "
+                  : "dark:bg-slate-500"
               }`}
               onClick={() => {
                 onSelectVideo(video);
@@ -149,11 +145,11 @@ const VideoPlayer = ({ videoSrc }) => {
   }, []);
 
   return (
-    <div className="animate__animated animate__backInDown  md:flex-1 bg-gray-300 rounded-3xl p-5 min-h-[300px] h-[500px] shadow-lg flex justify-center items-center">
+    <div className="animate__animated animate__backInDown   bg-gray-300  shadow-lg flex justify-center items-center md:flex-1 md:min-h-[500px] md:h-[700px] dark:bg-gray-700">
       {!iframeLoaded && <Spin />}
 
       <iframe
-        className={`w-3/4 mx-auto md:h-full min-h-[300px] rounded-2xl animate__animated animate__fadeIn ${
+        className={` mx-auto min-w-[370px] h-[320px] md:h-full md:w-3/4 animate__animated animate__fadeIn ${
           iframeLoaded ? "" : "hidden"
         }`}
         src={videoSrc}
@@ -173,6 +169,9 @@ const IndexPage = () => {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+  const [courseContent , setCourseContent]=useState(false)
+
+  const [isHovered, setIsHovered] = useState(true);
 
   return (
     <div className="md:flex pt-5 mx-5 overflow-x-hidden ">
@@ -183,7 +182,7 @@ const IndexPage = () => {
       >
         <VideoPlayer videoSrc={currentVideo.src} />
         <DownloadButton fileUrl={currentVideo.slideUrl} />
-        
+
         <p>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit magnam
           consequuntur deserunt non. Laborum fugiat dolorem ex suscipit iure
@@ -200,7 +199,23 @@ const IndexPage = () => {
           Explicabo nam aliquid numquam, deleniti quas saepe cupiditate omnis,
           laboriosam inventore vitae nesciunt cum tenetur natus in earum
         </p>
-        <button onClick={toggleSidebar}>X</button>
+        <button
+          onClick={toggleSidebar}
+          onMouseEnter={() => {
+            setIsHovered(true);
+            setCourseContent(true);
+          }}
+          onMouseLeave={() => {
+          
+            setCourseContent(false);
+          }}
+          className={`${
+            isSidebarOpen ? "hidden" : "hidden md:block"
+          } absolute top-[200px] right-5 p-4 bg-indigo-500 dark:bg-slate-800 text-white ${isHovered ? "animate__animated animate__fadeInRight" : ""} `}
+        >
+          <FontAwesomeIcon icon={faLeftLong} />
+          <span  className={`${courseContent?"inline-block":"hidden"} mx-3 ${isHovered ? "animate__animated animate__fadeInRight" : "animate__animated animate__fadeOutRight"} `}>Course content</span>
+        </button>
       </div>
       {isSidebarOpen && (
         <VideoSidebar
