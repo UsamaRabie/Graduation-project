@@ -19,7 +19,7 @@ const DownloadButton = ({ fileUrl }) => {
 
   return (
     <div className='text-center animate__animated animate__bounceIn'>
-      <Button onClick={handleDownload} className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded my-10 transition-all duration-200">
+      <Button onClick={handleDownload} className="bg-[#66bfbf] hover:bg-[#f76b8a] text-white font-bold py-3 px-6 rounded my-10 transition-all duration-200">
         Download Slide
       </Button>
     </div>
