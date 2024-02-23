@@ -144,7 +144,7 @@ const VideoPlayer = ({ videoSrc, isOpen }) => {
   }, []);
 
   return (
-    <div className="animate__animated animate__backInDown bg-gray-300 rounded-md flex justify-center items-center md:flex-1 md:min-h-[500px] md:h-[400px] dark:bg-[#1e1e1e]">
+    <div className="animate__animated animate__backInDown bg-gray-300 rounded-md flex justify-center items-center md:flex-1 md:min-h-[500px] md:h-[400px] dark:bg-[#282828]">
       {!iframeLoaded && <Spin />}
 
       <iframe
@@ -182,7 +182,7 @@ const IndexPage = () => {
       className={`md:flex pt-5 mx-5 overflow-x-hidden ${
         isSidebarOpen
           ? `pt-5 mx-5 transition-all duration-300`
-          : `pt-0 mx-0 transition-all duration-300`
+          : `!pt-0 !mx-0 transition-all duration-300`
       }`}
     >
       <div

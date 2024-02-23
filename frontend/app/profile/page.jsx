@@ -5,7 +5,7 @@ function Profile() {
     <div>
       <div className="g">
         {/* top content */}
-        <div className="flex bg-gray-300 sm:px-2 w-full rounded-bl-3xl text-indigo-500">
+        <div className="flex bg-gray-200 dark:bg-[#282828] sm:px-2 w-full rounded-bl-3xl text-[#66bfbf]">
           <div className="h-40 w-40 overflow-hidden sm:rounded-full sm:relative sm:p-0 top-10 left-5 p-3 ">
             <img
               className="rounded-full "
@@ -14,10 +14,10 @@ function Profile() {
             />{" "}
           </div>
           <div className="w-2/3 sm:text-center pl-5 mt-10 text-start ">
-            <p className="font-poppins font-bold text-black sm:text-4xl text-2xl">
+            <p className="font-poppins font-bold text-[#66bfbf] sm:text-4xl text-2xl">
               Mohamed Alaa
             </p>
-            <p className="text-black font-bold">Software Engineer</p>
+            <p className="text-[#66bfbf] font-bold">Software Engineer</p>
           </div>
         </div>
         {/* main content */}
@@ -26,10 +26,10 @@ function Profile() {
             <div className="flex flex-col sm:w-1/3">
               {/* My contact */}
               <div className="py-3 sm:order-none order-3">
-                <h2 className="text-lg font-poppins font-bold text-indigo-500">
+                <h2 className="text-lg font-poppins font-bold text-[#66bfbf]">
                   My Contact
                 </h2>
-                <div className="border-2 w-20 border-indigo-500 my-3" />
+                <div className="border-2 w-20 border-[#66bfbf] my-3" />
                 <div>
                   <div className="flex items-center my-1">
                     <a className="w-6 text-gray-700 hover:text-orange-600">
@@ -111,10 +111,10 @@ function Profile() {
            
               {/* Education Background */}
               <div className="py-3 sm:order-none order-1">
-                <h2 className="text-lg font-poppins font-bold text-indigo-500">
+                <h2 className="text-lg font-poppins font-bold text-[#66bfbf]">
                   Education Background
                 </h2>
-                <div className="border-2 w-20 border-indigo-500 my-3" />
+                <div className="border-2 w-20 border-[#66bfbf] my-3" />
                 <div className="flex flex-col space-y-1">
                   <div className="flex flex-col">
                     <p className="font-semibold text-xs text-gray-700">2021</p>
@@ -154,10 +154,10 @@ function Profile() {
             <div className="flex flex-col sm:w-2/3 order-first sm:order-none sm:-mt-10">
               {/* About me */}
               <div className="py-3">
-                <h2 className="text-lg font-poppins font-bold text-indigo-500">
+                <h2 className="text-lg font-poppins font-bold text-[#66bfbf]">
                   About Me
                 </h2>
-                <div className="border-2 w-20 border-indigo-500 my-3" />
+                <div className="border-2 w-20 border-[#66bfbf] my-3" />
                 <p>
                   To get a career opportunity which would help me to utilize my
                   academic background to assist me to gain experience, employ my
@@ -166,10 +166,10 @@ function Profile() {
               </div>
               {/* Professional Experience */}
               <div className="py-3">
-                <h2 className="text-lg font-poppins font-bold text-indigo-500">
+                <h2 className="text-lg font-poppins font-bold text-[#66bfbf]">
                   Professional Experience
                 </h2>
-                <div className="border-2 w-20 border-indigo-500 my-3" />
+                <div className="border-2 w-20 border-[#66bfbf] my-3" />
                 <div className="flex flex-col">
                   <div className="flex flex-col">
                     <p className="text-lg font-bold text-gray-700">
@@ -207,7 +207,7 @@ function Profile() {
               </div>
               {/* Projects */}
               <div className="py-3">
-                <h2 className="text-lg font-poppins font-bold text-indigo-500">
+                <h2 className="text-lg font-poppins font-bold text-[#66bfbf]">
                   Projects
                 </h2>
                 <div className="border-2 w-20 border-top-color my-3" />

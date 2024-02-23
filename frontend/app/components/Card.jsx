@@ -31,7 +31,7 @@ export function CardDefault({courseTitle , courseImg , courseDescription}) {
       </div>
       <div className="flex w-full flex-col p-4 sm:w-1/2 sm:p-8 lg:w-3/5 text-[#66bfbf]">
         <div className="flex items-start justify-between mb-4">
-          <div className="text-sm font-medium uppercase sm:text-base text-[#f76b8a] dark text-[#66bfbf]">11 Lecture</div>
+          <div className="text-sm font-medium uppercase sm:text-base text-[#66bfbf]">11 Lecture</div>
           <div className="text-end">
             <div className="w-full sm:w-80 bg-[#EEEEEE] h-2 rounded-md">
               <div className="bg-[#66bfbf] h-2 rounded-md" style={{width: '67%'}} />
